@@ -151,7 +151,7 @@ Same concepts you already know, different words:
    connect *your fork* to your dbt platform account
    (GitHub/GitLab/Azure DevOps). Working from your own fork gives you write
    access for branches and pull requests (Modules 4–5) without needing access to
-   anyone else's repo. Use the `23_jun_lab` branch for today's session.
+   anyone else's repo. Develop on your own branch off `main`.
 
 > No dbt platform access? Modules 2, 3, and 6 run locally against `platform`
 > with the Fusion CLI — see [Appendix B](#appendix-b--local-cli-path-no-dbt-platform). The Mesh
