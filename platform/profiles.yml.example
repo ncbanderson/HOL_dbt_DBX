@@ -13,7 +13,7 @@ platform:
   outputs:
     dev:
       type: databricks
-      catalog: main                                # Unity Catalog catalog (<CATALOG>)
+      catalog: Databricks_LondonSALab_2026         # Unity Catalog catalog (<CATALOG>)
       schema: "dbt_{{ env_var('USER', 'dev') }}"   # personal dev schema, e.g. dbt_hb — never hardcoded in models
       host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
       http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
@@ -22,7 +22,7 @@ platform:
 
     prod:
       type: databricks
-      catalog: main
+      catalog: Databricks_LondonSALab_2026
       schema: analytics
       host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
       http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"

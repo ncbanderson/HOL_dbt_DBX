@@ -137,7 +137,7 @@ Same concepts you already know, different words:
 ## Prerequisites
 
 1. **Databricks**: a workspace with **Unity Catalog** and a **SQL warehouse**.
-   Note your catalog name (the labs assume `main`). One warehouse is shared by
+   Note your catalog name (today's session uses `Databricks_LondonSALab_2026`). One warehouse is shared by
    the whole room.
    - For the **materialized view** in Module 5, the workspace must have a
      **serverless SQL warehouse** (Databricks materialized views and streaming
@@ -228,7 +228,7 @@ walk its structure.
    |-------|-------|---------|
    | Server Hostname | your workspace host | `dbc-a2c61234-1234.cloud.databricks.com` |
    | HTTP Path | your **SQL warehouse** HTTP path | `/sql/1.0/warehouses/1a23b4596cd7e8fg` |
-   | Catalog | your HOL Unity Catalog | `main` |
+   | Catalog | your HOL Unity Catalog | `Databricks_LondonSALab_2026` |
    | Auth | personal access token | `dapi…` |
 
    Then set your **development credentials**: a personal dev **schema** —
@@ -243,7 +243,7 @@ walk its structure.
    In `platform/dbt_project.yml`, find the `vars:` block and set:
    ```yaml
    vars:
-     raw_catalog: main                                   # your Unity Catalog
+     raw_catalog: Databricks_LondonSALab_2026            # your Unity Catalog
      raw_schema: <yourfirstname>_<yourlastname>_retail   # your Fivetran destination schema
    ```
    Use lowercase and underscores only — match exactly what you set as the
@@ -660,7 +660,7 @@ also mirrors the real-world single-producer pattern.)*
    `dbt build` issues `CREATE MATERIALIZED VIEW`; dbt manages the definition and
    refresh and keeps it in the lineage graph. Verify in Databricks:
    ```sql
-   DESCRIBE EXTENDED main.<finance_schema>.fct_daily_revenue;
+   DESCRIBE EXTENDED Databricks_LondonSALab_2026.<finance_schema>.fct_daily_revenue;
    ```
    > **Requires a serverless SQL warehouse + Unity Catalog** (Databricks MVs run
    > on serverless). **dbt vs native:** same model file you'd write for a table —
@@ -928,7 +928,7 @@ Re-running `dbt build` is idempotent. To start fully clean, drop your dev schema
 in Databricks and rebuild:
 
 ```sql
-DROP SCHEMA IF EXISTS main.<your_dev_schema> CASCADE;
+DROP SCHEMA IF EXISTS Databricks_LondonSALab_2026.<your_dev_schema> CASCADE;
 ```
 ```bash
 cd platform && dbt build
