@@ -158,17 +158,52 @@ Same concepts you already know, different words:
 
 ## Module 1 — Ingest the raw data with Fivetran
 
-**Goal:** land the six raw retail tables into a personal Unity Catalog schema.
+**Goal:** land the raw retail tables into your own Unity Catalog schema in the
+shared Databricks destination, using a Fivetran PostgreSQL connector.
 
-1. In Fivetran, configure (or confirm) a connector that lands the retail source
-   into a Databricks Unity Catalog destination schema. Each attendee uses a
-   personal schema — e.g. `<yourfirstname>_<yourlastname>_retail`.
-2. Confirm the six tables landed, each carrying Fivetran's `_fivetran_synced`
-   (load timestamp) and `_fivetran_deleted` (soft-delete flag):
-   `customers`, `loyalty_segments`, `ret_customers`, `ret_orders`,
-   `ret_tickets`, `sales_orders`.
-3. Note your **catalog** and **schema** names — you'll plug them into the
-   producer project in the next module.
+> **Today's parameters come from your lab credentials page.** Host, user, and
+> password are specific to this session; everything else is fixed as shown below.
+
+1. In Fivetran, click **+ Connector**.
+2. Search for and select **Google Cloud PostgreSQL** — pick this *exact* source
+   type. Common mistakes to avoid:
+   - ❌ *Google Cloud MySQL* — different engine; won't connect to our Postgres source.
+   - ❌ *Postgres RDS / Aurora Postgres / generic Postgres* — right engine, wrong cloud variant.
+   - ❌ *Databricks* — Databricks is the **destination**, not the source.
+   - ✅ **Google Cloud PostgreSQL** is the only correct choice for this lab.
+3. Configure the connector — *host / user / password* come from your **lab
+   credentials page**:
+
+   | Setting | Value |
+   |---------|-------|
+   | Destination | `HOL_DATABASE_London` (pre-configured — should be the default) |
+   | Destination schema prefix | `yourfirstname_yourlastname` *(lowercase, underscores only)* |
+   | Host | From lab credentials page — pick **G1 or G2** by the first letter of your last name |
+   | Port | `5432` |
+   | User | From lab credentials page |
+   | Password | From lab credentials page |
+   | Database | `industry` *(case-sensitive)* |
+   | Authentication method | Connect with a username and password |
+   | Connection method | Connect directly |
+   | Update method | Query-based |
+
+4. Click **Save & Test** and wait for the connection test to pass.
+5. **Select the data to sync.** Choose the **`retail`** schema and sync its six
+   tables — `customers`, `loyalty_segments`, `ret_customers`, `ret_orders`,
+   `ret_tickets`, `sales_orders` — then click **Continue**. These are the sources
+   the `platform` project reads in Module 2.
+6. **Handle schema changes:** select **Allow all** (the default) → **Continue**.
+7. **Start the initial sync.** It usually finishes in under a minute; continue to
+   the verify step while it runs.
+8. **Verify the data landed in Unity Catalog.** In Databricks **Catalog Explorer**,
+   open your HOL catalog → the **`yourfirstname_yourlastname_retail`** schema →
+   **Tables** → `sales_orders` → **Sample Data**. Scroll right to the
+   `_fivetran_synced` column — the marker Fivetran adds to every table it manages
+   (each table also carries `_fivetran_deleted`, the soft-delete flag).
+
+   > ✅ **Expected:** the six retail tables in your personal schema, each with a
+   > `_fivetran_synced` timestamp. Note your **catalog** and **schema** names —
+   > you'll set them as `raw_catalog` / `raw_schema` in Module 2.
 
 > **dbt vs native:** Fivetran lands raw data; dbt does every transformation from
 > here as SQL pushed down to your Databricks warehouse. For SaaS sources,
