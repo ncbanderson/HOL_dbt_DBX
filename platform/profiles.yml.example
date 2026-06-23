@@ -1,4 +1,4 @@
-# LOCAL / CLI fallback only. On the dbt platform (Cloud), connections are
+# LOCAL / CLI fallback only. On the dbt platform, connections are
 # configured in the UI per environment and this file is ignored.
 #
 # Copy to ~/.dbt/profiles.yml (or keep it here and run `dbt <command> --profiles-dir .`)
