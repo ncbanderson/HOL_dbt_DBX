@@ -19,7 +19,7 @@ clean-targets:
 # Raw data location. The Fivetran destination schema lives in Unity Catalog.
 # Override per environment with: dbt build --vars '{raw_catalog: my_cat, raw_schema: my_schema}'
 vars:
-  raw_catalog: main
+  raw_catalog: Databricks_LondonSALab_2026
   raw_schema: hicham_babahmed_retail
 
 models:

@@ -39,10 +39,10 @@ dbt docs generate                 # catalog with persisted Unity Catalog comment
 ```
 
 Set the raw data location to match your Fivetran destination (defaults are
-`main` / `hicham_babahmed_retail` in `dbt_project.yml`):
+`Databricks_LondonSALab_2026` / `hicham_babahmed_retail` in `dbt_project.yml`):
 
 ```bash
-dbt build --vars '{raw_catalog: main, raw_schema: hicham_babahmed_retail}'
+dbt build --vars '{raw_catalog: Databricks_LondonSALab_2026, raw_schema: hicham_babahmed_retail}'
 ```
 
 ## Deploying for the Mesh

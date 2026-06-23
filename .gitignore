@@ -16,3 +16,6 @@ profiles.yml
 
 # dbt Fusion local user file
 .user.yml
+
+# internal SA enablement — never push to the public lab repo
+SA_NOTES_INTERNAL.md

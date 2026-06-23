@@ -1,4 +1,4 @@
-# LOCAL / CLI fallback only. On the dbt platform (Cloud), connections are
+# LOCAL / CLI fallback only. On the dbt platform, connections are
 # configured in the UI per environment and this file is ignored.
 #
 # Copy to ~/.dbt/profiles.yml (or keep here and run `dbt <cmd> --profiles-dir .`).
@@ -12,7 +12,7 @@ finance:
   outputs:
     dev:
       type: databricks
-      catalog: main
+      catalog: Databricks_LondonSALab_2026
       schema: "dbt_{{ env_var('USER', 'dev') }}_finance"
       host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
       http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
@@ -21,7 +21,7 @@ finance:
 
     prod:
       type: databricks
-      catalog: main
+      catalog: Databricks_LondonSALab_2026
       schema: finance
       host: "{{ env_var('DBT_DATABRICKS_HOST') }}"
       http_path: "{{ env_var('DBT_DATABRICKS_HTTP_PATH') }}"
