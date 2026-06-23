@@ -234,11 +234,13 @@ walk its structure.
    Then set your **development credentials**: a personal dev **schema** —
    e.g. `dbt_<initials>` — so your builds are isolated. Zero infra, instant
    environment; one SQL warehouse shared by the room.
-2. **Create the `platform` project** in dbt Studio: point it at the
-   `HOL_dbt_DBX` repo with **project subdirectory = `platform`**. This is the
-   *producer* — it owns the Fivetran source tables and publishes four governed
-   models the other two projects build on. Set the raw-data vars to match your
-   Fivetran destination schema from Module 1.
+2. **Create the `platform` project** in dbt Studio: point it at **your fork** of
+   `HOL_dbt_DBX` (fork it first — see [Prerequisites](#prerequisites) step 3) with
+   **project subdirectory = `platform`**. Connecting your *own fork* is what gives
+   you write access to commit branches and open pull requests in Modules 4–5. This
+   is the *producer* — it owns the Fivetran source tables and publishes four
+   governed models the other two projects build on. Set the raw-data vars to match
+   your Fivetran destination schema from Module 1.
 
    In `platform/dbt_project.yml`, find the `vars:` block and set:
    ```yaml
