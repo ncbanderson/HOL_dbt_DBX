@@ -147,8 +147,11 @@ Same concepts you already know, different words:
    - **dbt State** (Module 4) and **dbt Mesh** (Module 5) require **dbt
      Enterprise / Enterprise+** on a Fusion environment. If your account is
      Starter or single-project, run those modules presenter-led.
-3. This repository — `HOL_dbt_DBX` — accessible from your dbt platform account
-   (GitHub/GitLab/Azure DevOps).
+3. **Fork this repository** (`HOL_dbt_DBX`) to your own GitHub account, then
+   connect *your fork* to your dbt platform account
+   (GitHub/GitLab/Azure DevOps). Working from your own fork gives you write
+   access for branches and pull requests (Modules 4–5) without needing access to
+   anyone else's repo. Use the `23_jun_lab` branch for today's session.
 
 > No dbt platform access? Modules 2, 3, and 6 run locally against `platform`
 > with the Fusion CLI — see [Appendix B](#appendix-b--local-cli-path-no-dbt-platform). The Mesh
